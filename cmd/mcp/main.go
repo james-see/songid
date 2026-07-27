@@ -65,9 +65,7 @@ func main() {
 			Description: "Record audio from the system microphone and identify the song using Chromaprint fingerprinting and AcoustID lookup.",
 		},
 		func(ctx context.Context, req *mcp.CallToolRequest, input ListenInput) (*mcp.CallToolResult, MatchOutput, error) {
-			if key == "" {
-				return errorResult("AcoustID API key is required (register at https://acoustid.org/applications, set ACOUSTID_API_KEY env var)"), MatchOutput{}, nil
-			}
+			// Falls back to built-in default key if none provided
 
 			durStr := input.Duration
 			if durStr == "" {
@@ -117,9 +115,7 @@ func main() {
 			Description: "Identify a song from an audio file path using Chromaprint fingerprinting and AcoustID lookup.",
 		},
 		func(ctx context.Context, req *mcp.CallToolRequest, input FileInput) (*mcp.CallToolResult, MatchOutput, error) {
-			if key == "" {
-				return errorResult("AcoustID API key is required (register at https://acoustid.org/applications, set ACOUSTID_API_KEY env var)"), MatchOutput{}, nil
-			}
+			// Falls back to built-in default key if none provided
 
 			if input.Path == "" {
 				return errorResult("path parameter is required"), MatchOutput{}, nil
@@ -175,9 +171,9 @@ func main() {
 			}
 
 			if key != "" {
-				out.APIKey = "OK"
+				out.APIKey = "OK (custom key)"
 			} else {
-				out.APIKey = "NOT SET (register at https://acoustid.org/applications)"
+				out.APIKey = "using built-in default"
 			}
 
 			return nil, out, nil

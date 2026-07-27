@@ -15,8 +15,16 @@ type Client struct {
 	HTTP    *http.Client
 }
 
+// DefaultAPIKey is the AcoustID example key from the public docs.
+// It works for lookups out of the box. For production use, register
+// your own app at https://acoustid.org/applications and set ACOUSTID_API_KEY.
+const DefaultAPIKey = "qHMRWH0aNAk"
+
 // New creates a new AcoustID lookup client.
 func New(apiKey string) *Client {
+	if apiKey == "" {
+		apiKey = DefaultAPIKey
+	}
 	return &Client{
 		APIKey:  apiKey,
 		BaseURL: "https://api.acoustid.org/v2",

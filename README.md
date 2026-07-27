@@ -18,7 +18,9 @@ go install github.com/james-see/songid/cmd/songid@latest
 go install github.com/james-see/songid/cmd/mcp@latest
 ```
 
-## Get a free AcoustID API key
+## Get a free AcoustID API key (optional)
+
+songid works out of the box with a built-in default API key. For production or high-volume use, register your own:
 
 1. Register at https://acoustid.org/applications
 2. Create an application
@@ -118,7 +120,7 @@ result, err := identifier.FromMicrophone(cfg)
 |-----------|----------|---------|
 | [Chromaprint](https://github.com/acoustid/chromaprint) | Yes | `brew install chromaprint` |
 | [ffmpeg](https://ffmpeg.org) | For microphone capture only | `brew install ffmpeg` |
-| [AcoustID API key](https://acoustid.org/applications) | Yes | Free registration |
+| [AcoustID API key](https://acoustid.org/applications) | No (built-in default) | Free registration |
 
 ## License
 

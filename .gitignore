@@ -1,0 +1,10 @@
+# Binaries
+songid
+songid-mcp
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
